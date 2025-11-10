@@ -20,9 +20,63 @@
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
+									"\r",
 									"pm.test(\"Status code name should have an OK string\", function () {\r",
 									"    pm.response.to.have.status(\"OK\");\r",
-									"});"
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"console. log(jsonData)\r",
+									"console. log(jsonData.apiVersion)\r",
+									"console. log(jsonData.categories[4])\r",
+									"console. log(jsonData.categories[1])\r",
+									"console. log(jsonData.categories[2])\r",
+									"\r",
+									"\r",
+									"pm.test(\"confirm the apiVersion is 8.6.2.0\", function () {   \r",
+									"  pm.expect(jsonData.apiVersion).to.eql(\"8.6.2.0\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"confirm the apiVersion is 8.6.2.0\", function () {   \r",
+									"  pm.expect(jsonData.apiVersion).to.eql(\"8.6.2.0\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"confirm the last category is system\", function () {   \r",
+									"  pm.expect(jsonData.categories[4]).to.eql(\"system\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"verify consumer exist in categories\", function () {   \r",
+									"  pm.expect(jsonData.categories[2]).to.eql(\"consumer\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Confirm if categories with authoriztion is present\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"authorization\");\r",
+									"});\r",
+									"/** \r",
+									" *\r",
+									" * \r",
+									"pm.test(\"Body is correct\", function () {\r",
+									"    pm.response.to.have.body(\"response_body_string\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"string_you_want_to_search\");\r",
+									"});\r",
+									"*/\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
 								],
 								"type": "text/javascript",
 								"packages": {},
@@ -34,6 +88,9 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "GET",
 						"header": [],
 						"body": {
